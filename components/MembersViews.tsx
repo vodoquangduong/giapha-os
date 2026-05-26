@@ -17,7 +17,8 @@ const BubbleMapTree = dynamic(
       return {
         default: () => (
           <div className="flex absolute inset-0 items-center justify-center p-4 text-center bg-stone-50 rounded-2xl border border-stone-200/60 shadow-inner text-stone-500">
-            Tính năng này không được hỗ trợ trên trình duyệt của bạn. Vui lòng cập nhật hoặc sử dụng trình duyệt khác.
+            Tính năng này không được hỗ trợ trên trình duyệt của bạn. Vui lòng
+            cập nhật hoặc sử dụng trình duyệt khác.
           </div>
         ),
       };
@@ -36,7 +37,7 @@ export default function MembersViews({
   relationships,
   canEdit = false,
 }: MembersViewsProps) {
-  const { view: currentView, rootId, setView, setRootId } = useMemberListView();
+  const { view: currentView, rootId, setRootId } = useMemberListView();
   const searchParams = useSearchParams();
   const hasRestored = useRef(false);
 

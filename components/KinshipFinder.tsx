@@ -83,10 +83,11 @@ function PersonSelector({
       </p>
       <button
         onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl border text-left transition-all ${selected
-          ? "bg-amber-50 border-amber-300 text-stone-800"
-          : "bg-white/80 border-stone-200 text-stone-400 hover:border-amber-200"
-          }`}
+        className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl border text-left transition-all ${
+          selected
+            ? "bg-amber-50 border-amber-300 text-stone-800"
+            : "bg-white/80 border-stone-200 text-stone-400 hover:border-amber-200"
+        }`}
       >
         <div className="relative shrink-0">
           <div
@@ -320,7 +321,7 @@ export default function KinshipFinder({ persons, relationships }: Props) {
     try {
       if (p1Id) localStorage.setItem("kinship_p1", p1Id);
       else localStorage.removeItem("kinship_p1");
-      
+
       if (p2Id) localStorage.setItem("kinship_p2", p2Id);
       else localStorage.removeItem("kinship_p2");
     } catch (e) {
@@ -489,11 +490,11 @@ export default function KinshipFinder({ persons, relationships }: Props) {
             {/* Disclaimer for ambiguous terms */}
             {(result.aCallsB.includes("/") ||
               result.aCallsB.includes("họ hàng")) && (
-                <p className="text-xs text-stone-400 italic px-1">
-                  * Danh xưng chính xác dựa trên giới tính, thứ tự sinh của các
-                  nhánh và vế Nội/Ngoại.
-                </p>
-              )}
+              <p className="text-xs text-stone-400 italic px-1">
+                * Danh xưng chính xác dựa trên giới tính, thứ tự sinh của các
+                nhánh và vế Nội/Ngoại.
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -678,15 +679,26 @@ export default function KinshipFinder({ persons, relationships }: Props) {
                     <table className="w-full text-sm text-left">
                       <thead className="bg-stone-50/30 text-stone-500 text-xs uppercase tracking-wider border-b border-stone-100">
                         <tr>
-                          <th className="px-5 py-3 font-semibold text-emerald-700 w-1/2 border-r border-stone-100">Tham Chiếu</th>
-                          <th className="px-5 py-3 font-semibold text-amber-700 w-1/2">Cách gọi khác</th>
+                          <th className="px-5 py-3 font-semibold text-emerald-700 w-1/2 border-r border-stone-100">
+                            Tham Chiếu
+                          </th>
+                          <th className="px-5 py-3 font-semibold text-amber-700 w-1/2">
+                            Cách gọi khác
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-stone-100">
                         {REGIONAL_TERMS.map((row, i) => (
-                          <tr key={i} className="hover:bg-stone-50/50 transition-colors">
-                            <td className="px-5 py-3 font-bold text-stone-700 capitalize border-r border-stone-100/50">{row.reference}</td>
-                            <td className="px-5 py-3 text-stone-600 capitalize">{row.other}</td>
+                          <tr
+                            key={i}
+                            className="hover:bg-stone-50/50 transition-colors"
+                          >
+                            <td className="px-5 py-3 font-bold text-stone-700 capitalize border-r border-stone-100/50">
+                              {row.reference}
+                            </td>
+                            <td className="px-5 py-3 text-stone-600 capitalize">
+                              {row.other}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -701,9 +713,19 @@ export default function KinshipFinder({ persons, relationships }: Props) {
                     Một số lưu ý thú vị
                   </p>
                   <div className="mt-5 pt-4 border-t border-blue-200/50">
-                    <p className="font-bold text-blue-900">Hệ thống xưng hô Việt rất "vai vế"</p>
+                    <p className="font-bold text-blue-900">
+                      Hệ thống xưng hô Việt rất &quot;vai vế&quot;
+                    </p>
                     <p className="mt-2 leading-relaxed">
-                      Tiếng Việt không chỉ phân biệt <strong>tuổi, giới tính, bên nội/ngoại</strong> mà còn phân biệt <strong>thứ bậc trong gia đình, lớn/nhỏ hơn cha mẹ, quan hệ qua hôn nhân</strong>. Nên đây là một trong những hệ thống danh xưng phức tạp nhất châu Á.
+                      Tiếng Việt không chỉ phân biệt{" "}
+                      <strong>tuổi, giới tính, bên nội/ngoại</strong> mà còn
+                      phân biệt{" "}
+                      <strong>
+                        thứ bậc trong gia đình, lớn/nhỏ hơn cha mẹ, quan hệ qua
+                        hôn nhân
+                      </strong>
+                      . Nên đây là một trong những hệ thống danh xưng phức tạp
+                      nhất châu Á.
                     </p>
                   </div>
                 </div>

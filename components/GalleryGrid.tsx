@@ -14,7 +14,12 @@ interface GalleryGridProps {
   onDeleteSuccess?: (id: string) => void;
 }
 
-export default function GalleryGrid({ items, isAdmin, onEdit, onDeleteSuccess }: GalleryGridProps) {
+export default function GalleryGrid({
+  items,
+  isAdmin,
+  onEdit,
+  onDeleteSuccess,
+}: GalleryGridProps) {
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -31,7 +36,10 @@ export default function GalleryGrid({ items, isAdmin, onEdit, onDeleteSuccess }:
       }
 
       // Delete from db
-      const { error } = await supabase.from("gallery_items").delete().eq("id", item.id);
+      const { error } = await supabase
+        .from("gallery_items")
+        .delete()
+        .eq("id", item.id);
       if (error) throw error;
 
       setSelectedItem(null);
@@ -50,9 +58,12 @@ export default function GalleryGrid({ items, isAdmin, onEdit, onDeleteSuccess }:
         <div className="size-20 bg-stone-50 rounded-full flex items-center justify-center mb-4 border border-stone-100">
           <Maximize2 className="size-8 text-stone-300" />
         </div>
-        <h3 className="text-xl font-bold text-stone-700 mb-2">Chưa có hình ảnh nào</h3>
+        <h3 className="text-xl font-bold text-stone-700 mb-2">
+          Chưa có hình ảnh nào
+        </h3>
         <p className="text-stone-500 max-w-sm">
-          Hãy là người đầu tiên thêm hình ảnh để lưu giữ những kỷ niệm đẹp của dòng họ.
+          Hãy là người đầu tiên thêm hình ảnh để lưu giữ những kỷ niệm đẹp của
+          dòng họ.
         </p>
       </div>
     );
@@ -130,7 +141,9 @@ export default function GalleryGrid({ items, isAdmin, onEdit, onDeleteSuccess }:
                 {selectedItem.event_date && (
                   <div className="flex items-center gap-2 text-stone-500 font-medium mb-6 pb-6 border-b border-stone-100">
                     <CalendarDays className="size-4" />
-                    <span>{dayjs(selectedItem.event_date).format("DD/MM/YYYY")}</span>
+                    <span>
+                      {dayjs(selectedItem.event_date).format("DD/MM/YYYY")}
+                    </span>
                   </div>
                 )}
 
@@ -141,12 +154,17 @@ export default function GalleryGrid({ items, isAdmin, onEdit, onDeleteSuccess }:
                     </p>
                   </div>
                 ) : (
-                  <p className="text-stone-400 italic">Không có nội dung mô tả.</p>
+                  <p className="text-stone-400 italic">
+                    Không có nội dung mô tả.
+                  </p>
                 )}
               </div>
 
               <div className="p-6 bg-stone-50 border-t border-stone-100 text-xs text-stone-400 font-medium flex justify-between items-center">
-                <span>Đã thêm vào {dayjs(selectedItem.created_at).format("DD/MM/YYYY")}</span>
+                <span>
+                  Đã thêm vào{" "}
+                  {dayjs(selectedItem.created_at).format("DD/MM/YYYY")}
+                </span>
 
                 {isAdmin && (
                   <div className="flex gap-2">

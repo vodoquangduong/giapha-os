@@ -32,9 +32,9 @@ export default function FamilyNodeCard({
     <div
       onClick={onClickCard}
       className={`
-        group py-2 px-1 flex flex-col items-center justify-start transition-all duration-300 hover:-translate-y-1 rounded-2xl relative h-full
+        group py-2 px-1 flex flex-col items-center justify-start transition-all duration-300 hover:-translate-y-1 rounded-3xl relative h-full
         ${isDeceased ? "grayscale-[0.4] opacity-80" : ""}
-        ${showAvatar ? "w-20 sm:w-24 md:w-28 bg-white/70 hover:shadow-xl" : "px-3"}
+        ${showAvatar ? "w-20 sm:w-24 md:w-28 bg-surface/70 backdrop-blur-xl hover:shadow-soft-hover" : "px-3"}
       `}
     >
       {isRingVisible && (
@@ -102,10 +102,10 @@ export default function FamilyNodeCard({
           {showAvatar
             ? person.full_name
             : person.full_name.split(" ").map((word, i) => (
-              <span key={i} className="block">
-                {word}
-              </span>
-            ))}
+                <span key={i} className="block">
+                  {word}
+                </span>
+              ))}
         </div>
       </div>
     </div>

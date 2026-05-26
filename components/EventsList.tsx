@@ -379,7 +379,7 @@ export default function EventsList({
 
         <button
           onClick={handleOpenCreateModal}
-          className="relative z-10 w-full sm:w-auto px-5 py-3 rounded-xl bg-stone-800 text-white font-semibold hover:bg-stone-900 active:scale-95 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+          className="btn-primary relative z-10 w-full sm:w-auto"
         >
           <Plus className="size-5 text-stone-300" />
           <span>Thêm sự kiện</span>
@@ -462,7 +462,7 @@ export default function EventsList({
       {filtered.length > showCount && (
         <button
           onClick={() => setShowCount((n) => n + 20)}
-          className="w-full py-3 text-sm font-semibold text-stone-500 hover:text-amber-600 transition-colors"
+          className="btn w-full"
         >
           Xem thêm {filtered.length - showCount} sự kiện…
         </button>

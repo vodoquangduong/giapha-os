@@ -127,22 +127,20 @@ export default function UploadModal({
         if (dbError) throw dbError;
       } else {
         // Insert
-        const { error: dbError } = await supabase
-          .from("gallery_items")
-          .insert([
-            {
-              ...itemData,
-              created_by: userData?.user?.id || null,
-            },
-          ]);
+        const { error: dbError } = await supabase.from("gallery_items").insert([
+          {
+            ...itemData,
+            created_by: userData?.user?.id || null,
+          },
+        ]);
         if (dbError) throw dbError;
       }
 
       // Success
       resetForm();
       onSuccess();
-    } catch (err: any) {
-      setError(err.message || "Đã xảy ra lỗi.");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Đã xảy ra lỗi.");
     } finally {
       setIsUploading(false);
     }
@@ -206,14 +204,20 @@ export default function UploadModal({
 
             <div className="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 pt-16 pb-8">
               <h2 className="text-xl font-serif font-bold text-stone-800 mb-6">
-                {initialData ? "Chỉnh sửa hình ảnh" : "Thêm vào Phòng trưng bày"}
+                {initialData
+                  ? "Chỉnh sửa hình ảnh"
+                  : "Thêm vào Phòng trưng bày"}
               </h2>
 
-              <form id="upload-form" onSubmit={handleSubmit} className="space-y-6">
+              <form
+                id="upload-form"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
                 {/* Image Upload Area */}
                 <div
                   className={`border-2 border-dashed rounded-2xl p-8 text-center transition-colors cursor-pointer
-                    ${preview ? 'border-stone-200 bg-stone-50' : 'border-stone-300 hover:border-pink-400 hover:bg-pink-50/50'}`}
+                    ${preview ? "border-stone-200 bg-stone-50" : "border-stone-300 hover:border-pink-400 hover:bg-pink-50/50"}`}
                   onClick={() => !preview && fileInputRef.current?.click()}
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
@@ -243,8 +247,12 @@ export default function UploadModal({
                         <UploadCloud className="size-8" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-stone-700">Kéo thả ảnh vào đây, hoặc click để chọn</p>
-                        <p className="text-xs text-stone-500 mt-1">Hỗ trợ JPG, PNG, WEBP (Max 10MB)</p>
+                        <p className="text-sm font-medium text-stone-700">
+                          Kéo thả ảnh vào đây, hoặc click để chọn
+                        </p>
+                        <p className="text-xs text-stone-500 mt-1">
+                          Hỗ trợ JPG, PNG, WEBP (Max 10MB)
+                        </p>
                       </div>
                     </div>
                   )}
@@ -267,7 +275,8 @@ export default function UploadModal({
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-semibold text-stone-700 mb-1.5">
-                      Tiêu đề ảnh / Sự kiện <span className="text-red-500">*</span>
+                      Tiêu đề ảnh / Sự kiện{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -325,8 +334,10 @@ export default function UploadModal({
                         <Loader2 className="size-4 animate-spin" />
                         Đang lưu...
                       </>
+                    ) : initialData ? (
+                      "Lưu thay đổi"
                     ) : (
-                      initialData ? "Lưu thay đổi" : "Lưu hình ảnh"
+                      "Lưu hình ảnh"
                     )}
                   </button>
                 </div>
@@ -338,4 +349,3 @@ export default function UploadModal({
     </AnimatePresence>
   );
 }
-

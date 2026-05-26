@@ -182,7 +182,7 @@ export default function MemberDetailModal() {
                   onClick={() => {
                     setIsEditing(false);
                   }}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-stone-100/80 text-stone-700 rounded-full hover:bg-stone-200 font-semibold text-sm shadow-sm border border-stone-200/50 transition-colors"
+                  className="inline-flex items-center justify-center shrink-0 gap-1.5 px-3 py-2.5 bg-stone-100/80 text-stone-700 rounded-full hover:bg-stone-200 font-medium text-sm border border-stone-200/50 hover:-translate-y-1 hover:shadow-soft-hover transition-all duration-300"
                 >
                   <ArrowLeft className="size-4" />
                   <span className="hidden sm:inline">Quay lại</span>
@@ -193,14 +193,14 @@ export default function MemberDetailModal() {
                   <>
                     <Link
                       href={`/dashboard/members/${person.id}`}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-amber-100/80 text-amber-800 rounded-full hover:bg-amber-200 font-semibold text-sm shadow-sm border border-amber-200/50 transition-colors"
+                      className="btn-amber text-sm"
                     >
                       <ExternalLink className="size-4" />
                       <span className="hidden sm:inline">Xem</span>
                     </Link>
                     <button
                       onClick={() => setIsEditing(true)}
-                      className="flex items-center gap-1.5 px-4 py-2 bg-amber-100/80 text-amber-800 rounded-full hover:bg-amber-200 font-semibold text-sm shadow-sm border border-amber-200/50 transition-colors"
+                      className="btn-amber text-sm"
                     >
                       <Edit2 className="size-4" />
                       <span className="hidden sm:inline">Chỉnh sửa</span>
@@ -245,7 +245,7 @@ export default function MemberDetailModal() {
                   <p className="text-red-600 font-medium text-lg">{error}</p>
                   <button
                     onClick={closeModal}
-                    className="mt-2 px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold rounded-full transition-colors"
+                    className="btn mt-2 rounded-full"
                   >
                     Đóng
                   </button>
