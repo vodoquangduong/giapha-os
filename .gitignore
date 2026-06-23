@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/frontend/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,13 +13,21 @@
 
 # testing
 /coverage
+/frontend/coverage
 
 # next.js
 /.next/
+/frontend/.next/
 /out/
+/frontend/out/
 
 # production
 /build
+/frontend/build
+
+# dotnet
+**/bin/
+**/obj/
 
 # misc
 .DS_Store
@@ -33,13 +42,17 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env
 .env.local
+frontend/.env
+frontend/.env.local
 
 # vercel
 .vercel
+frontend/.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+frontend/next-env.d.ts
 
 # agent
 .antigravitycli/
